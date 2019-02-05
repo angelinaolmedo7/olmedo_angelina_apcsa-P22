@@ -47,6 +47,7 @@ public class MilesPerHour
 	
 	public String toString()
 	{
-		return distance+ " miles in "+hours+" hours and "+minutes+" minutes = "+mph+" MPH.";
+		//mph = (int) Math.round(mph);
+		return distance+ " miles in "+hours+" hours and "+minutes+" minutes = "+(int) Math.round(mph)+" MPH.";
 	}
 }
