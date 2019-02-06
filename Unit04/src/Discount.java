@@ -7,6 +7,7 @@
 //Lab  -
 
 import static java.lang.System.*;
+import java.math.*;
 import java.util.Scanner;
 
 public class Discount
@@ -17,6 +18,9 @@ public class Discount
 	//			if the bill is >2000, the bill receives a 15% discount
 	public static double getDiscountedBill(double bill)
 	{
-		return 0;
+		if (bill>2000) {
+			bill = bill*(double)0.85;
+		}
+		return Math.round(bill*100.0)/100.0;
 	}
 }
