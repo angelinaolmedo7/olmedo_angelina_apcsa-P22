@@ -13,5 +13,10 @@ public class StringRunner
 {
 	public static void main ( String[] args )
 	{
+		Scanner keyboard = new Scanner(System.in);
+		String word;
+		
+		out.print("Enter a word :: ");
+		word = keyboard.toString();
 	}
 }

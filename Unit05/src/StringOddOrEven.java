@@ -12,6 +12,7 @@ import java.util.Scanner;
 public class StringOddOrEven
 {
 	private String word;
+	private String evenodd;
 
 	public StringOddOrEven()
 	{
@@ -19,20 +20,27 @@ public class StringOddOrEven
 
 	public StringOddOrEven(String s)
 	{
+		setString(s);
+		toString();
 	}
 
 	public void setString(String s)
 	{
+		word = s;
 	}
 
  	public boolean isEven()
  	{
-		return false;
+		return ((word.length()&2)==0);
 	}
 
  	public String toString()
  	{
- 		String output="";
+ 		if (isEven()) {
+ 			evenodd = "even";
+ 		}
+ 		else evenodd = "odd";
+ 		String output= word + " has "+word.length()+" characters and therefor is "+evenodd;
  		return output;
 	}
 }
