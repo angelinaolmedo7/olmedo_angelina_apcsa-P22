@@ -16,7 +16,38 @@ public class StringRunner
 		Scanner keyboard = new Scanner(System.in);
 		String word;
 		
+		StringOddOrEven test = new StringOddOrEven();
+		
 		out.print("Enter a word :: ");
-		word = keyboard.toString();
+		word = keyboard.nextLine();
+		
+		test.setString(word);
+		test.isEven();
+		//test.toString();
+		out.println(test);
+		
+		out.print("Enter a word :: ");
+		word = keyboard.nextLine();
+		
+		test.setString(word);
+		test.isEven();
+		//test.toString();
+		out.println(test);
+		
+		out.print("Enter a word :: ");
+		word = keyboard.nextLine();
+		
+		test.setString(word);
+		test.isEven();
+		//test.toString();
+		out.println(test);
+		
+		out.print("Enter a word :: ");
+		word = keyboard.nextLine();
+		
+		test.setString(word);
+		test.isEven();
+		//test.toString();
+		out.println(test);
 	}
 }

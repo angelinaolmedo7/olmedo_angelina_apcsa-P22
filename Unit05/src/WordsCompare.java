@@ -23,11 +23,14 @@ public class WordsCompare
 
 	public void setWords(String one, String two)
 	{
+		wordOne = one.toLowerCase();
+		wordTwo = two.toLowerCase();
 
 	}
 
 	public void compare()
 	{
+		compare = wordOne.compareTo(wordTwo);
 	}
 
 	public String toString()
@@ -36,9 +39,10 @@ public class WordsCompare
 		{
 			return wordOne + " should be placed before " + wordTwo + "\n";
 		}
-		else
+		else if (compare>0)
 		{
 			return wordOne + " should be placed after " + wordTwo + "\n";
 		}
+		else return wordOne+" and "+wordTwo + " are the same.";
 	}
 }
