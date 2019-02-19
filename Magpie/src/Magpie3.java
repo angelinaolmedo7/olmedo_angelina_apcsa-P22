@@ -205,7 +205,7 @@ public class Magpie3
 		{
 			response = "Wack.";
 		}
-		else response = ";sdfhgiaufg;DU";
+		else response = "K";
 
 		return response;
 	}

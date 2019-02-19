@@ -35,11 +35,6 @@ public class Magpie4
 		{
 			response = "Say something, please.";
 		}
-
-		else if (findKeyword(statement, "no") >= 0)
-		{
-			response = "Why so negative?";
-		}
 		else if (findKeyword(statement, "mother") >= 0
 				|| findKeyword(statement, "father") >= 0
 				|| findKeyword(statement, "sister") >= 0
@@ -47,7 +42,39 @@ public class Magpie4
 		{
 			response = "Tell me more about your family.";
 		}
+		else if (findKeyword(statement, "Wall-E")>=0 
+				|| findKeyword(statement,"Terminator")>=0 
+				|| findKeyword(statement,"Jarvis")>=0 
+				|| findKeyword(statement,"Chimbot")>=0)
+		{
+			response = "Love that guy.";
+		}
+		else if (findKeyword(statement, "Dog")>=0 
+				|| findKeyword(statement,"Cat")>=0 
+				|| findKeyword(statement,"Puppy")>=0 
+				|| findKeyword(statement,"Kitten")>=0)
+		{
+			response = "Tell me more about your pets.";
+		}
+		else if (findKeyword(statement, "friend")>=0 
+				|| findKeyword(statement,"pal")>=0 
+				|| findKeyword(statement,"buddy")>=0 
+				|| findKeyword(statement,"fren")>=0)
+		{
+			response = "That's cool. That you have friends.";
+		}
+		else if (findKeyword(statement, "will you")>=0 
+				|| findKeyword(statement,"can you")>=0 
+				|| findKeyword(statement,"please")>=0)
+		{
+			response = "No.";
+		}
+		
 
+		else if (findKeyword(statement, "no") >= 0)
+		{
+			response = "Why so negative?";
+		}
 		// Responses which require transformations
 		else if (findKeyword(statement, "I want to", 0) >= 0)
 		{
@@ -191,11 +218,11 @@ public class Magpie4
 	 */
 	private String getRandomResponse()
 	{
-		final int NUMBER_OF_RESPONSES = 4;
+		final int NUMBER_OF_RESPONSES = 7;
 		double r = Math.random();
-		int whichResponse = (int)(r * NUMBER_OF_RESPONSES);
+		int whichResponse = (int) (r * NUMBER_OF_RESPONSES);
 		String response = "";
-		
+
 		if (whichResponse == 0)
 		{
 			response = "Interesting, tell me more.";
@@ -212,8 +239,29 @@ public class Magpie4
 		{
 			response = "You don't say.";
 		}
+		else if (whichResponse == 4)
+		{
+			response = "Mood.";
+		}
+		else if (whichResponse == 5)
+		{
+			response = "Oh worm.";
+		}
+		else if (whichResponse == 6)
+		{
+			response = "Wack.";
+		}
+		else response = "K";
 
 		return response;
+	}
+	private String transformIWantStatement(String iWant) {
+		
+		return "";
+	}
+	private String transformIYouStatement(String iYou) {
+		
+		return "k";
 	}
 
 }
