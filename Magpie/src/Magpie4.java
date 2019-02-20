@@ -80,6 +80,10 @@ public class Magpie4
 		{
 			response = transformIWantToStatement(statement);
 		}
+		else if (findKeyword(statement, "I want", 0) >= 0)
+		{
+			response = transformIWantStatement(statement);
+		}
 
 		else
 		{
@@ -92,6 +96,14 @@ public class Magpie4
 			{
 				response = transformYouMeStatement(statement);
 			}
+			
+			int psnTwo = findKeyword(statement, "I", 0);
+			if (psn >= 0
+					&& findKeyword(statement, "you", psn) >= 0)
+			{
+				response = transformIYouStatement(statement);
+			}
+			
 			else
 			{
 				response = getRandomResponse();
@@ -121,7 +133,22 @@ public class Magpie4
 		String restOfStatement = statement.substring(psn + 9).trim();
 		return "What would it mean to " + restOfStatement + "?";
 	}
-
+	
+	private String transformIWantStatement(String statement)
+	{
+		//  Remove the final period, if there is one
+		statement = statement.trim();
+		String lastChar = statement.substring(statement
+				.length() - 1);
+		if (lastChar.equals("."))
+		{
+			statement = statement.substring(0, statement
+					.length() - 1);
+		}
+		int psn = findKeyword (statement, "I want", 0);
+		String restOfStatement = statement.substring(psn + 6).trim();
+		return "Would you really be happy if you had " + restOfStatement + "?";
+	}
 	
 	
 	/**
@@ -149,7 +176,24 @@ public class Magpie4
 		return "What makes you think that I " + restOfStatement + " you?";
 	}
 	
-	
+	private String transformIYouStatement(String statement)
+	{
+		//  Remove the final period, if there is one
+		statement = statement.trim();
+		String lastChar = statement.substring(statement
+				.length() - 1);
+		if (lastChar.equals("."))
+		{
+			statement = statement.substring(0, statement
+					.length() - 1);
+		}
+		
+		int psnOfYou = findKeyword (statement, "I", 0);
+		int psnOfMe = findKeyword (statement, "you", psnOfYou + 1);
+		
+		String restOfStatement = statement.substring(psnOfYou + 1, psnOfMe).trim();
+		return "Why do you " + restOfStatement + " me?";
+	}
 
 	
 	
@@ -254,14 +298,6 @@ public class Magpie4
 		else response = "K";
 
 		return response;
-	}
-	private String transformIWantStatement(String iWant) {
-		
-		return "";
-	}
-	private String transformIYouStatement(String iYou) {
-		
-		return "k";
 	}
 
 }
