@@ -90,15 +90,14 @@ public class Magpie4
 			// Look for a two word (you <something> me)
 			// pattern
 			int psn = findKeyword(statement, "you", 0);
+			int psnTwo = findKeyword(statement, "I", 0);
 
 			if (psn >= 0
 					&& findKeyword(statement, "me", psn) >= 0)
 			{
 				response = transformYouMeStatement(statement);
 			}
-			
-			int psnTwo = findKeyword(statement, "I", 0);
-			if (psn >= 0
+			else if (psnTwo >= 0
 					&& findKeyword(statement, "you", psn) >= 0)
 			{
 				response = transformIYouStatement(statement);
