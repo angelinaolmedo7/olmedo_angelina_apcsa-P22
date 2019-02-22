@@ -80,7 +80,7 @@ public class RockPaperScissors
 
 	public String toString()
 	{
-		String output="";
+		String output="Player had :: "+playChoice+"\nComputer had :: "+compChoice+"\nThe winner is :: "+determineWinner();
 		return output;
 	}
 }
