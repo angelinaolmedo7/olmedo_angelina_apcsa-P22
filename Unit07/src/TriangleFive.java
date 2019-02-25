@@ -50,6 +50,9 @@ public class TriangleFive
 		
 		for (int i=0;i<amount;i++) {
 			for (int n = repeat; n>0; n--) {
+				if ((start+i>25)) {
+					start = 0-i;
+				}
 				tri += alphabet[start+i];
 			}
 			tri+=" ";
@@ -59,18 +62,22 @@ public class TriangleFive
 		return tri;
 	}
 	
-	public String anotherLine () {
+	public String otherLines () {
 		String base = doTriBase();
-		String line = base+"\n";
+		String addTo = base;
+		String line ="";
+		int sub = 1;
 		for (int i=0;i<amount;i++) {
-			line += base.substring(0, base.length()-i)+"\n";
+			addTo = addTo.substring(0, addTo.length()-sub);
+			line += (addTo+"\n");
+			sub++;
 		}
 		return line;
 	}
 
 	public String toString()
 	{
-		String output=doTriBase();
+		String output= otherLines();
 		return output;
 	}
 }
