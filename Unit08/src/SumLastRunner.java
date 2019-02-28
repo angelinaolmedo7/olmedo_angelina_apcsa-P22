@@ -44,10 +44,6 @@ public class SumLastRunner
 
 		julie.setNums(new int[] {9,10,-8,10000,-5000,-3000});
 		System.out.println(julie);
-
-		
-		
-		
 		
 		
 	}
