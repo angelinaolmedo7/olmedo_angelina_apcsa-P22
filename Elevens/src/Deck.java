@@ -1,17 +1,11 @@
 import java.util.List;
 import java.util.ArrayList;
 
-/**
- * The Deck class represents a shuffled deck of cards.
- * It provides several operations including
- *      initialize, shuffle, deal, and check if empty.
- */
+
 public class Deck {
 
-	/**
-	 * cards contains all the cards in the deck.
-	 */
-	private List<Card> cards;
+	//private List<Card> cards;
+	private Card[] cards;
 
 	/**
 	 * size is the number of not-yet-dealt cards.
