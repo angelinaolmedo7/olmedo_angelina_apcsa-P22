@@ -16,15 +16,26 @@ public class RaySumLast
 		nums = ray;
 	}
 	
-	public static 
+	//public static 
 	public static int go(int[] ray)
 	{
-		if (RayDown.go(ray)) {
+		int sum = 0;
+		if (ray.length==0||ray.length==1) {
 			return -1;
 		}
-		return 0;
+		for (int i = 0; i<ray.length;i++) {
+			if (ray[i]>ray[ray.length-1]) {
+				sum+=ray[i];
+				//System.out.println("Adding "+ray[i]);
+			}
+		}
+		if (sum==0) {
+			return -1;
+		}
+		return sum;
 	}
+	
 	public String toString() {
-		return ""+go();
+		return ""+go(nums);
 	}
 }
