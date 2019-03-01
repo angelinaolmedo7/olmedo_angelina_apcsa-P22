@@ -6,42 +6,32 @@ public class Deck {
 
 	//private List<Card> cards;
 	private Card[] cards;
-
-	/**
-	 * size is the number of not-yet-dealt cards.
-	 * Cards are dealt from the top (highest index) down.
-	 * The next card to be dealt is at size - 1.
-	 */
 	private int size;
 
-
-	/**
-	 * Creates a new <code>Deck</code> instance.<BR>
-	 * It pairs each element of ranks with each element of suits,
-	 * and produces one of the corresponding card.
-	 * @param ranks is an array containing all of the card ranks.
-	 * @param suits is an array containing all of the card suits.
-	 * @param values is an array containing all of the card point values.
-	 */
 	public Deck(String[] ranks, String[] suits, int[] values) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		cards = new Card[ranks.length*suits.length];
+		int ind = 0;
+		for (int i = 0; i<suits.length; i++) {
+			for (int b = 0; b<ranks.length; b++) {
+				cards[ind] = new Card(ranks[b],suits[i],values[b]);
+				ind++;
+			}
+		}
+		shuffle();
 	}
 
-
-	/**
-	 * Determines if this deck is empty (no undealt cards).
-	 * @return true if this deck is empty, false otherwise.
-	 */
 	public boolean isEmpty() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		return (size()==0);
 	}
 
-	/**
-	 * Accesses the number of undealt cards in this deck.
-	 * @return the number of undealt cards in this deck.
-	 */
 	public int size() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		int count = 0;
+		for (int i = 0; i< cards.length; i++) {
+			if (!cards[i].suit().equals("Empty")){
+				count++;
+			}
+		}
+		return count;
 	}
 
 	/**
@@ -58,7 +48,14 @@ public class Deck {
 	 *         previously dealt.
 	 */
 	public Card deal() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		if (isEmpty()) {
+			return null;
+		}
+		else {
+			Card ret = new Card(cards[size()-1].rank(),cards[size()-1].suit(),cards[size()-1].pointValue());
+			cards[size()-1] = new Card("Empty","Empty",0);
+			return ret;
+		}
 	}
 
 	/**
@@ -67,10 +64,10 @@ public class Deck {
 	 */
 	@Override
 	public String toString() {
-		String rtn = "size = " + size + "\nUndealt cards: \n";
+		String rtn = "size = " + size() + "\nUndealt cards: \n";
 
 		for (int k = size - 1; k >= 0; k--) {
-			rtn = rtn + cards.get(k);
+			rtn = rtn + cards[k];
 			if (k != 0) {
 				rtn = rtn + ", ";
 			}
@@ -81,12 +78,12 @@ public class Deck {
 		}
 
 		rtn = rtn + "\nDealt cards: \n";
-		for (int k = cards.size() - 1; k >= size; k--) {
-			rtn = rtn + cards.get(k);
-			if (k != size) {
+		for (int k = size() - 1; k >= size(); k--) {
+			rtn = rtn + cards[k];
+			if (k != size()) {
 				rtn = rtn + ", ";
 			}
-			if ((k - cards.size()) % 2 == 0) {
+			if ((k - size()) % 2 == 0) {
 				// Insert carriage returns so entire deck is visible on console.
 				rtn = rtn + "\n";
 			}
