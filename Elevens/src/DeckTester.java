@@ -11,22 +11,7 @@ public class DeckTester {
 		Deck cardDeck = new Deck (new String[] {"Dog", "Cat"}, new String[] {"Earth","Air","Fire","Water"}, new int[] {1,2});
 		System.out.println(cardDeck.size());
 		System.out.println(cardDeck.deal());
-		System.out.println(cardDeck.size());
-		System.out.println(cardDeck.deal());
-		System.out.println(cardDeck.size());
-		System.out.println(cardDeck.deal());
-		System.out.println(cardDeck.size());
-		System.out.println(cardDeck.deal());
-		System.out.println(cardDeck.size());
-		System.out.println(cardDeck.deal());
-		System.out.println(cardDeck.size());
-		System.out.println(cardDeck.deal());
-		System.out.println(cardDeck.size());
-		System.out.println(cardDeck.deal());
-		System.out.println(cardDeck.size());
-		System.out.println(cardDeck.deal());
-		System.out.println(cardDeck.size());
-		System.out.println(cardDeck.deal());
+		System.out.println(cardDeck);
 	
 	}
 }

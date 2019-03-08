@@ -76,7 +76,7 @@ public class Deck {
 				rtn = rtn + "\n";
 			}
 		}
-
+		
 		rtn = rtn + "\nDealt cards: \n";
 		for (int k = size() - 1; k >= size(); k--) {
 			rtn = rtn + cards[k];
