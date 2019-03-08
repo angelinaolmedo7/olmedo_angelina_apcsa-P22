@@ -10,6 +10,7 @@ public class Deck {
 
 	public Deck(String[] ranks, String[] suits, int[] values) {
 		cards = new Card[ranks.length*suits.length];
+		size = cards.length;
 		int ind = 0;
 		for (int i = 0; i<suits.length; i++) {
 			for (int b = 0; b<ranks.length; b++) {
@@ -21,17 +22,15 @@ public class Deck {
 	}
 
 	public boolean isEmpty() {
-		return (size()==0);
+		return (size==0);
 	}
 
-	public int size() {
-		int count = 0;
-		for (int i = 0; i< cards.length; i++) {
-			if (!cards[i].suit().equals("Empty")){
-				count++;
-			}
-		}
-		return count;
+	public int getSize() {
+		return size;
+	}
+	
+	public void setSize(int newSize) {
+		size = newSize;
 	}
 
 	/**
@@ -39,7 +38,14 @@ public class Deck {
 	 * and reset the size to represent the entire deck.
 	 */
 	public void shuffle() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
+		Card crd;
+		for (int k = cards.length-1; k>=0; k--) {
+			int r = (int)(Math.random() * k + 1); 
+			crd=cards[k];
+			cards[k]=cards[r];
+			cards[r]=crd;
+		}
+		size=cards.length;
 	}
 
 	/**
@@ -52,9 +58,8 @@ public class Deck {
 			return null;
 		}
 		else {
-			Card ret = new Card(cards[size()-1].rank(),cards[size()-1].suit(),cards[size()-1].pointValue());
-			cards[size()-1] = new Card("Empty","Empty",0);
-			return ret;
+			setSize(size-1);
+			return new Card(cards[size].rank(),cards[size].suit(),cards[size].pointValue());
 		}
 	}
 
@@ -64,7 +69,7 @@ public class Deck {
 	 */
 	@Override
 	public String toString() {
-		String rtn = "size = " + size() + "\nUndealt cards: \n";
+		String rtn = "size = " + size + "\nUndealt cards: \n";
 
 		for (int k = size - 1; k >= 0; k--) {
 			rtn = rtn + cards[k];
@@ -78,12 +83,12 @@ public class Deck {
 		}
 		
 		rtn = rtn + "\nDealt cards: \n";
-		for (int k = size() - 1; k >= size(); k--) {
+		for (int k = cards.length-1; k >= size; k--) {
 			rtn = rtn + cards[k];
-			if (k != size()) {
+			if (k != size) {
 				rtn = rtn + ", ";
 			}
-			if ((k - size()) % 2 == 0) {
+			if ((k - size) % 2 == 0) {
 				// Insert carriage returns so entire deck is visible on console.
 				rtn = rtn + "\n";
 			}
