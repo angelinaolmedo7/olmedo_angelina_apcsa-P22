@@ -10,7 +10,7 @@ class Rational implements Comparable<Rational>
 	private int numerator, denominator;
 
 	public Rational () {
-		setRational(0,1);
+		setRational(1,1);
 	}
 	
 	public Rational (int num, int den) {
@@ -52,6 +52,12 @@ class Rational implements Comparable<Rational>
 		return new Rational (num/grcode, den/grcode);
 	}
 
+	private Rational tempReduceSelf()
+	{
+		int grcode = gcd(numerator, denominator);
+		return new Rational (numerator/grcode, denominator/grcode);
+	}
+
 	private int gcd(int numOne, int numTwo)
 	{
 		BigInteger numer = new BigInteger(Integer.toString(numOne));
@@ -78,7 +84,7 @@ class Rational implements Comparable<Rational>
 	
 	public boolean equals( Rational obj)
 	{
-		if ().) {
+		if ( obj.tempReduceSelf().getNumerator() == tempReduceSelf().getNumerator()  &&  obj.tempReduceSelf().getDenominator() == tempReduceSelf().getDenominator() ) {
 			return true;
 		}
 		else return false;
@@ -86,22 +92,24 @@ class Rational implements Comparable<Rational>
 
 	public int compareTo(Rational other)
 	{
-		double first = numerator/denominator;
-		double second = other.getNumerator()/other.getDenominator();
+		double first = (double)(numerator)/denominator;
+		double second = (double)(other.getNumerator())/other.getDenominator();
 		
 		if (first>second) {
 			return 1;
 		}
-		else if (first==second) {
-			return 0;
+		else if (first<second) {
+			return -1;
 		}
-		else return -1;
+		else return 0;
 	}   //i'm not entirely sure what I was supposed to do here
 
 
 
 	
-	//write  toString() method
+	public String toString() {
+		return (numerator + "/"+denominator);
+	}
 	
 	
 }
