@@ -14,15 +14,40 @@ public class MonsterRunner
 		String monName= "";
 		int monSize = 0;
 		
-		System.out.print("Name :: ");
-		monName = keyboard.nextLine();
+		System.out.print("Enter 1st monster's name : ");
+		monName = keyboard.next();
 		
-		System.out.println("Size :: ");
+		System.out.print("Enter 1st monster's size : ");
+		monSize = keyboard.nextInt();
 		
-		//instantiate monster one
+		Skeleton mon1 = new Skeleton(monName,monSize);
 		
-		//ask for name and size
 		
-		//instantiate monster two
+		System.out.print("Enter 2nd monster's name : ");
+		monName = keyboard.next();
+		
+		System.out.print("Enter 2nd monster's size : ");
+		monSize = keyboard.nextInt();
+		
+		Skeleton mon2 = new Skeleton(monName,monSize);
+		
+		
+		System.out.println("Monster 1 - "+mon1);
+		System.out.println("Monster 2 - "+mon2);
+		
+		if (mon1.isBigger(mon2)) {
+			System.out.println("Monster 1 is bigger than Monster 2.");
+		}
+		else {
+			System.out.println("Monster 1 is smaller than or the same size as Monster 2.");
+		}
+		
+		if (mon1.namesTheSame(mon2)) {
+			System.out.println("Monster 1 has the same name as Monster 2.");
+		}
+		else {
+			System.out.println("Monster 1 does not have the same name as Monster 2.");
+		}
+		
 	}
 }
