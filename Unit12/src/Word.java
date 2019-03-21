@@ -25,10 +25,10 @@ public class Word implements Comparable<Word>
 		else { //same length
 			int len = word.length();
 			for (int i=0; i<len; i++) {
-				if (word.charAt(i)>other.charAt(i)) {
+				if (word.charAt(i)<other.charAt(i)) {
 					return -1;
 				}
-				else if (word.charAt(i)<word.charAt(i)) {
+				else if (word.charAt(i)>word.charAt(i)) {
 					return 1;
 				}
 			}
