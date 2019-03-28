@@ -316,6 +316,7 @@ public class CardGameGUI extends JFrame implements ActionListener {
 			for (int i = 0; i < selections.length; i++) {
 				selections[i] = false;
 			}
+			board = new ElevensBoard(); //f 
 			repaint();
 		} else {
 			signalError();
