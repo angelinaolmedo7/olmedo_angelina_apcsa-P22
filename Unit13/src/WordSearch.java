@@ -34,7 +34,11 @@ public class WordSearch
 
     public boolean isFound( String word )
     {
-    	return (checkRight(word,numberOfRows,numberOfColumns) || checkLeft(word,numberOfRows,numberOfColumns));
+    	return (checkRight(word,numberOfRows,numberOfColumns) 
+    			|| checkLeft(word,numberOfRows,numberOfColumns)
+    			|| checkUp(word,numberOfRows,numberOfColumns)
+    			|| checkDown(word,numberOfRows,numberOfColumns)
+    			|| checkDiagUpRight(word,numberOfRows,numberOfColumns));
     }
 
 	public boolean checkRight(String w, int r, int c)
@@ -73,31 +77,122 @@ public class WordSearch
 
 	public boolean checkUp(String w, int r, int c)
 	{
+		
+		for (int i = 0; i < c; i++) {
+
+			String thisRow = "";
+			for (int b = r-1; b>=0; b--) {
+				thisRow+=m[b][i];
+			}
+			if (thisRow.contains(w)) {
+				return true;
+			}
+		}
 		return false;
+		
 	}
 
 	public boolean checkDown(String w, int r, int c)
    {
-	   return false;
+		
+		for (int i = 0; i < c; i++) {
+
+			String thisRow = "";
+			for (int b = 0; b < r; b++) {
+				thisRow+=m[b][i];
+			}
+			if (thisRow.contains(w)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public boolean checkDiagUpRight(String w, int r, int c)
 	{
+		for (int i = 0; i < r;i++) {
+			//int x = 0;
+			int y = i;
+			String thisRow = "";
+			for (int b = 0; b<i;b++) {
+				thisRow+=m[b][y];
+				y--;					
+			}
+			if (thisRow.contains(w)) {
+				return true;
+			}
+		}
+		
+		for (int i = 1; i < c;i++) {
+			int y = i;
+			String thisRow = "";
+			for (int b = r-1; b>=i;b--) {
+				thisRow+=m[b][y];
+				y++;					
+			}
+			//System.out.println(thisRow.length());
+			if (thisRow.contains(w)) {
+				return true;
+			}
+		}
+		
 		return false;
 	}
 
 	public boolean checkDiagUpLeft(String w, int r, int c)
-	{
+	{//ye
+		for (int i = 0; i < r;i++) {
+			//int x = 0;
+			int y = i;
+			String thisRow = "";
+			for (int b = 0; b<i;b++) {
+				thisRow+=m[b][y];
+				y--;					
+			}
+			if (thisRow.contains(w)) {
+				return true;
+			}
+		}
+		
+		for (int i = 1; i < c;i++) {
+			int y = i;
+			String thisRow = "";
+			for (int b = r-1; b>=i;b--) {
+				thisRow+=m[b][y];
+				y++;					
+			}
+			//System.out.println(thisRow.length());
+			if (thisRow.contains(w)) {
+				return true;
+			}
+		}
+		
 		return false;
 	}
 
 	public boolean checkDiagDownLeft(String w, int r, int c)
    {
+		for (int i = 1; i < c;i++) {
+			int x = i;
+			String thisRow = "";
+			for (int b = r-1; b>=i;b--) {
+				thisRow+=m[x][b];
+				x++;					
+			}
+			//System.out.println(thisRow.length());
+			if (thisRow.contains(w)) {
+				return true;
+			}
+		}
+		
 		return false;
 	}
 
 	public boolean checkDiagDownRight(String w, int r, int c)
 	{
+		
+
+		
 		return false;
 	}
 
