@@ -36,4 +36,27 @@ public class MatrixCount1
 		
 		return valCount;
     }
+
+
+    public String toString() {
+    	String rtn = "";
+    	
+    	int cols = m.length;
+        int rows = m[0].length;
+		int col =0;
+		int ro = 0;
+    	
+		for (int i =0; i<cols*rows;i++) {
+			rtn+=m[ro][col]+"  ";
+			col++;
+			if (col==cols) {
+				col=0;
+				ro++;
+				rtn+="\n";
+			}
+			
+		}
+    	
+    	return rtn;
+    }
 }

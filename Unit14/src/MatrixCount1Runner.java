@@ -8,7 +8,12 @@ public class MatrixCount1Runner
 	{
 		MatrixCount1 that = new MatrixCount1();
 		
-		System.out.println("The 3 count is :: "+that.count(3));
+		System.out.println("Matrix values\n"+that);
+		
+		System.out.println("The 7 count is :: "+that.count(7));
+		System.out.println("The 8 count is :: "+that.count(8));
+		System.out.println("The 6 count is :: "+that.count(6));
+		System.out.println("The 21 count is :: "+that.count(21));
 	}
 }
 
