@@ -10,9 +10,9 @@ public class RecursionFunOne
 	{
 		if (num>0) {
 			if (num%2==0) {
-				return 1+countEvenDigits((num-num%10)/10);
+				return 1+countEvenDigits(num/10);
 			}
-			else return 0+countEvenDigits((num-num%10)/10);
+			else return countEvenDigits(num/10);
 		}
 		return 0;
 	}

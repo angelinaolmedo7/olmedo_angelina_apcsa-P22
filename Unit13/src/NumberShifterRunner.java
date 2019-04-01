@@ -12,7 +12,31 @@ public class NumberShifterRunner
 {
 	public static void main( String args[] ) throws IOException
 	{
-		//add test cases
+		int[] arr = NumberShifter.makeLucky7Array(5);
+		System.out.println(Arrays.toString(arr));
+		NumberShifter.shiftEm(arr);
+		System.out.println(Arrays.toString(arr));
+
+		System.out.println();
+		
+		arr = NumberShifter.makeLucky7Array(10);
+		System.out.println(Arrays.toString(arr));
+		NumberShifter.shiftEm(arr);
+		System.out.println(Arrays.toString(arr));
+
+		System.out.println();
+		
+		arr = NumberShifter.makeLucky7Array(10);
+		System.out.println(Arrays.toString(arr));
+		NumberShifter.shiftEm(arr);
+		System.out.println(Arrays.toString(arr));
+
+		System.out.println();
+		
+		arr = NumberShifter.makeLucky7Array(20);
+		System.out.println(Arrays.toString(arr));
+		NumberShifter.shiftEm(arr);
+		System.out.println(Arrays.toString(arr));
 	}
 }
 

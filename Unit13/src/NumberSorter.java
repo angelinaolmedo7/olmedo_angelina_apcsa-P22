@@ -15,12 +15,27 @@ public class NumberSorter
 	private static int getNumDigits(int number)
 	{
 		int count = 0;
+		
+		do {
+			count++;
+			number/=10;
+		} while (number>0);
+		
 		return count;
 	}
 
 	public static int[] getSortedDigitArray(int number)
 	{
-		int[] sorted = null;
+		int[] sorted = new int[getNumDigits(number)];
+		int num = number;
+		
+		for (int i=0; i<sorted.length; i++) {
+			sorted[i]= num%10;
+			num/=10;
+		}
+		
+		Arrays.parallelSort(sorted);
+		
 		return sorted;
 	}
 }

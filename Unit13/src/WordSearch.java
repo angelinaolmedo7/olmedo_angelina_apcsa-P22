@@ -38,7 +38,8 @@ public class WordSearch
     			|| checkLeft(word,numberOfRows,numberOfColumns)
     			|| checkUp(word,numberOfRows,numberOfColumns)
     			|| checkDown(word,numberOfRows,numberOfColumns)
-    			|| checkDiagUpRight(word,numberOfRows,numberOfColumns));
+    			|| checkDiagUpRight(word,numberOfRows,numberOfColumns)
+    			|| checkDiagUpLeft(word,numberOfRows,numberOfColumns));
     }
 
 	public boolean checkRight(String w, int r, int c)
@@ -140,7 +141,7 @@ public class WordSearch
 	}
 
 	public boolean checkDiagUpLeft(String w, int r, int c)
-	{//ye
+	{
 		for (int i = 0; i < r;i++) {
 			//int x = 0;
 			int y = i;
