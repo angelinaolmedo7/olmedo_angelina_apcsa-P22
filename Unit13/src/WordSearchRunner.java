@@ -10,7 +10,7 @@ public class WordSearchRunner
     public static void main(String[] args) throws Exception
     {
     	  WordSearch ms = new WordSearch(8,"APPLEXYPXLHJKEEDEGGLLXXCGFPDGOGNMYNTAHUUPUQDGBTSBTHIGHMSILKXLTHIS");
-    	  String[] words = "APPLE AXE APEX CAT HEX EGG HAT COMPUTER GUM THIS TUG THIGH ELP KTP XEC".split(" ");
+    	  String[] words = "APPLE AXE APEX CAT HEX EGG HAT COMPUTER GUM THIS TUG THIGH ELP KTP XEE XEC".split(" ");
     	  System.out.println( ms );
     	  for( String s : words )
     	  {
