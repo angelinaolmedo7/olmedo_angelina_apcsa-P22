@@ -68,7 +68,7 @@ public class SimplePicture implements DigitalPicture
  {
    
    // load the picture into the buffered image 
-   load(fileName);
+   load("C:/Users/olmedoa2378/Desktop/workspaceAPCSA2019/olmedo_angelina_apcsa-P22/Unit16/src/Images/"+fileName);
    
  }
  

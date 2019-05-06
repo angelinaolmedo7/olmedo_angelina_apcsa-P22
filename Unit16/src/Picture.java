@@ -361,17 +361,17 @@ public class Picture extends SimplePicture
   } 
   public void createMyCollage()
   {
-    Picture flower1 = new Picture("robot.jpg");
-    Picture flower2 = new Picture("caterpillar.jpg");
-    this.copy(flower1,0,200);
-    this.copyTwo(flower2,120,50,50, 90, 20, 60);
-    Picture g = new Picture(flower1);
-    g.grayscale();
-    this.copy(g,100,0);
-    Picture flowerNoBlue = new Picture(flower2);
-    flowerNoBlue.zeroGreen();
-    this.copy(flowerNoBlue,200,100);
-    Picture onlyRed = new Picture(flower1);
+    Picture caterpillar = new Picture("caterpillar.jpg");
+    Picture butterfly = new Picture("butterfly1.jpg");
+    this.copy(caterpillar,0,200);
+    this.copyTwo(butterfly,120,50,50, 90, 20, 60);
+    Picture cat = new Picture(caterpillar);
+    cat.grayscale();
+    this.copy(cat,100,0);
+    Picture butNoRed = new Picture(butterfly);
+    butNoRed.zeroRed();
+    this.copy(butNoRed,200,100);
+    Picture onlyRed = new Picture(caterpillar);
     onlyRed.negate();
     this.copy(onlyRed,350,0);
     this.mirrorHorizontal();
@@ -469,6 +469,21 @@ public class Picture extends SimplePicture
     beach.explore();
     beach.zeroBlue();
     beach.explore();
+    
+    Picture templ = new Picture("temple.jpg");
+    templ.explore();
+    templ.mirrorTemple();
+    templ.explore();
+    
+    Picture feesh = new Picture("water.jpg");
+    feesh.explore();
+    feesh.fixUnderwater();
+    feesh.explore();
+    
+    Picture collage = new Picture("640x480.jpg");
+    collage.createMyCollage();
+    collage.explore();
+    
   }
   
 } // this } is the end of class Picture, put all new methods before this
