@@ -31,7 +31,7 @@ public class BreakoutPaddle extends Paddle{
 	public void moveLeftAndDraw(Graphics window)
 	   {
 		   draw(window,Color.WHITE);
-		   setY(getX()-super.getSpeed());
+		   setX(getX()-super.getSpeed());
 		   draw(window);
 
 
@@ -40,7 +40,7 @@ public class BreakoutPaddle extends Paddle{
 	   public void moveRightAndDraw(Graphics window)
 	   {
 		   draw(window,Color.WHITE);
-		   setY(getX()+super.getSpeed());
+		   setX(getX()+super.getSpeed());
 		   System.out.println(super.getSpeed());
 		   draw(window);
 	   }
