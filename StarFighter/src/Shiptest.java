@@ -20,5 +20,17 @@ public class Shiptest
         test3.setX(3);
         test3.setY(5);
         System.out.println("Ship 3 " + test3);
+        
+
+        MovingThing test4 = new Alien();
+        System.out.println("Ship 4 " + test4);
+
+        Alien test5 = new Alien(50,75);
+        System.out.println("Ship 5 " + test5);
+
+        Alien test6 = new Alien(7,7,6,5,1);
+        test3.setX(3);
+        test3.setY(5);
+        System.out.println("Ship 6 " + test6);
     }
 }
