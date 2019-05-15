@@ -17,14 +17,13 @@ import java.util.ArrayList;
 public class OuterSpace extends Canvas implements KeyListener, Runnable
 {
 	private Ship ship;
-	private Alien alienOne;
-	private Alien alienTwo;
-
-	/* uncomment once you are ready for this part
-	 *
-   private AlienHorde horde;
+	//private Alien alienOne;
+	//private Alien alienTwo;
+    private AlienHorde horde;
 	private Bullets shots;
-	*/
+	
+	private boolean gameOver = false;
+	private boolean dead = false;
 
 	private boolean[] keys;
 	private BufferedImage back;
@@ -36,9 +35,10 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		keys = new boolean[5];
 
 		//instantiate other instance variables
-		ship = new Ship(10,10,100,100,3);
-		alienOne = new Alien(100,10,100,100,3);
-		alienTwo = new Alien(250,10,100,100,3);
+		ship = new Ship(300,300,100,100,3);
+		horde = new AlienHorde(30);
+		shots = new Bullets();
+		
 
 		this.addKeyListener(this);
 		new Thread(this).start();
@@ -66,7 +66,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		Graphics graphToBack = back.createGraphics();
 
 		graphToBack.setColor(Color.BLUE);
-		graphToBack.drawString("StarFighter ", 25, 50 );
+		
 		graphToBack.setColor(Color.BLACK);
 		graphToBack.fillRect(0,0,800,600);
 
@@ -88,15 +88,42 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		}
 		
 		ship.draw(graphToBack);
-		alienOne.draw(graphToBack);
-		alienTwo.draw(graphToBack);
+		if(keys[4] == true) {
+			Ammo ammo = new Ammo(ship.getX() + 20,ship.getY() - 10,3);
+			shots.add(ammo);
+			keys[4] = false;
+		}
 		
+		//System.out.println(horde.toString());
+		
+		
+		
+		shots.cleanEmUp();
+		shots.moveEmAll();
+		shots.drawEmAll(graphToBack);
+		dead = horde.killedPlayer(ship);
+		horde.removeDeadOnes(shots.getList());
+		horde.moveEmAll();
+		horde.drawEmAll(graphToBack);
+		
+		
+		if(horde.ded() || dead) gameOver = true;
+		
+		if (gameOver)
+		{
+			graphToBack.setColor(Color.BLACK);
+			graphToBack.fillRect(0, 0, 800, 600);
+			graphToBack.setColor(Color.WHITE);
+			graphToBack.drawString("Game Over!", 350, 300);
+			if (!dead)
+			{
+				graphToBack.drawString(" You Won", 350, 330);
+			}
+			else graphToBack.drawString("Loser", 280, 330);
+		}
 
-		//add code to move Ship, Alien, etc.
-
-
-		//add in collision detection to see if Bullets hit the Aliens and if Bullets hit the Ship
-
+		twoDGraph.drawImage(back, null, 0, 0);
+		
 
 		twoDGraph.drawImage(back, null, 0, 0);
 	}

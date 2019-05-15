@@ -14,12 +14,12 @@ public class Ammo extends MovingThing
 
 	public Ammo()
 	{
-		this(0,0,0);
+		this(0,0,5);
 	}
 
 	public Ammo(int x, int y)
 	{
-		this(x,y,0);
+		this(x,y,5);
 	}
 
 	public Ammo(int x, int y, int s)
