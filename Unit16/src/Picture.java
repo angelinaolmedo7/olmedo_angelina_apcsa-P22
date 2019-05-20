@@ -460,6 +460,74 @@ public class Picture extends SimplePicture
     }
   }
   
+  public void encode(Picture messagePict)
+  {
+	  Pixel[][] messagePixels = messagePict.getPixels2D();
+	  Pixel[][] currPixels = this.getPixels2D();
+	  Pixel currPixel = null;
+	  Pixel messagePixel = null;
+	  
+	  int rv;
+	  int gv;
+	  int bv;
+	  
+	  int count = 0;
+	  for (int row = 0; row < this.getHeight(); row++) {
+		  for (int col = 0; col < this.getWidth(); col++) {
+			  currPixel = currPixels[row][col];
+			  
+			  rv = currPixel.getRed()%10;
+			  gv = currPixel.getGreen()%10;
+			  bv = currPixel.getBlue()%10;
+
+			  if (rv==gv && gv==bv) {
+				  currPixel.setRed(rv+1);
+			  }
+		  }
+	  }
+	  for (int row = 0; row < this.getHeight(); row++) {
+		  for (int col = 0; col < this.getWidth(); col++) {
+			  currPixel = currPixels[row][col];
+			  messagePixel = messagePixels[row][col];
+			  
+			  rv = currPixel.getRed()%10;
+			  gv = currPixel.getGreen()%10;
+			  bv = currPixel.getBlue()%10;
+
+			  if (messagePixel.getRed()>0 || messagePixel.getGreen()>0 || messagePixel.getBlue()>0) {
+				  currPixel.setRed((rv+gv+bv)/3);
+				  currPixel.setGreen((rv+gv+bv)/3);
+				  currPixel.setBlue((rv+gv+bv)/3);
+			  }
+		  }
+	  }
+	  //System.out.println(count);
+  }
+  /**
+  * Method to decode a message hidden in the
+  * red value of the current picture
+  * @return the picture with the hidden message
+  */
+  public Picture decode()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  int height = this.getHeight();
+	  int width = this.getWidth();
+	  Pixel currPixel = null;
+
+	  Pixel messagePixel = null;
+	  Picture messagePicture = new Picture(height,width);
+	  Pixel[][] messagePixels = messagePicture.getPixels2D();
+	  int count = 0;
+	  for (int row = 0; row < this.getHeight(); row++) {
+		  for (int col = 0; col < this.getWidth(); col++) {
+			  
+		  }
+	  }
+	  System.out.println(count);
+	  return messagePicture;
+  }
+  
   /* Main method for testing - each class in Java can have a main 
    * method 
    */
