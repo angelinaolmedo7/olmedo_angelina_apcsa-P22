@@ -3,8 +3,7 @@
  * that will help you test the Picture class 
  * methods.  Uncomment the methods and the code
  * in the main to test.
- * 
- * @author Barbara Ericson 
+ *  
  */
 public class PictureTester
 {
@@ -64,6 +63,24 @@ public class PictureTester
     gull.explore();
   }
   
+  public static void testEncodeDecode()
+  {
+    Picture enc = new Picture("beach.jpg");
+    enc.explore();
+    enc.encode(new Picture("msg.jpg"));
+    enc.explore();
+    enc.decode().explore();
+  }
+  
+  public static void testEncodeDecodeImg()
+  {
+    Picture enc = new Picture("beach.jpg");
+    enc.explore();
+    enc.encodeImg(new Picture("femaleLionAndHall.jpg"));
+    enc.explore();
+    enc.decodeImg().explore();
+  }
+  
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
@@ -71,17 +88,17 @@ public class PictureTester
     // uncomment a call here to run a test
     // and comment out the ones you don't want
     // to run
-    testZeroBlue();
+    //testZeroBlue();
     //testKeepOnlyBlue();
     //testKeepOnlyRed();
     //testKeepOnlyGreen();
-    testNegate();
+    //testNegate();
     //testGrayscale();
     //testFixUnderwater();
     //testMirrorVertical();
     //testMirrorTemple();
     //testMirrorArms();
-    testMirrorGull();
+    //testMirrorGull();
     //testMirrorDiagonal();
     //testCollage();
     //testCopy();
@@ -93,5 +110,7 @@ public class PictureTester
     //testSetRedToHalfValueInTopHalf();
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
+	  
+	  testEncodeDecodeImg();
   }
 }

@@ -471,7 +471,7 @@ public class Picture extends SimplePicture
 	  int gv;
 	  int bv;
 	  
-	  int count = 0;
+	  //int count = 0;
 	  for (int row = 0; row < this.getHeight(); row++) {
 		  for (int col = 0; col < this.getWidth(); col++) {
 			  currPixel = currPixels[row][col];
@@ -481,7 +481,7 @@ public class Picture extends SimplePicture
 			  bv = currPixel.getBlue()%10;
 
 			  if (rv==gv && gv==bv) {
-				  currPixel.setRed(rv+1);
+				  currPixel.setRed((currPixel.getRed()-(currPixel.getRed()%10)+rv)+1);
 			  }
 		  }
 	  }
@@ -493,11 +493,17 @@ public class Picture extends SimplePicture
 			  rv = currPixel.getRed()%10;
 			  gv = currPixel.getGreen()%10;
 			  bv = currPixel.getBlue()%10;
+			  
+			  int avg = (rv+gv+bv)/3;
 
-			  if (messagePixel.getRed()>0 || messagePixel.getGreen()>0 || messagePixel.getBlue()>0) {
-				  currPixel.setRed((rv+gv+bv)/3);
-				  currPixel.setGreen((rv+gv+bv)/3);
-				  currPixel.setBlue((rv+gv+bv)/3);
+			  if (messagePixel.getRed()<35 || messagePixel.getGreen()<35 || messagePixel.getBlue()<35) {
+				  currPixel.setRed((currPixel.getRed()-rv+avg));
+				  currPixel.setGreen((currPixel.getGreen()-gv+avg));
+				  currPixel.setBlue((currPixel.getBlue()-bv+avg));
+				  
+				  if ((currPixel.getRed()%10 != currPixel.getBlue()%10)) {
+					  System.out.println("uh oh sisters");
+				  }
 			  }
 		  }
 	  }
@@ -514,6 +520,9 @@ public class Picture extends SimplePicture
 	  int height = this.getHeight();
 	  int width = this.getWidth();
 	  Pixel currPixel = null;
+	  int rv;
+	  int gv;
+	  int bv;
 
 	  Pixel messagePixel = null;
 	  Picture messagePicture = new Picture(height,width);
@@ -521,10 +530,106 @@ public class Picture extends SimplePicture
 	  int count = 0;
 	  for (int row = 0; row < this.getHeight(); row++) {
 		  for (int col = 0; col < this.getWidth(); col++) {
+			  currPixel = pixels[row][col];
 			  
+			  rv = currPixel.getRed()%10;
+			  gv = currPixel.getGreen()%10;
+			  bv = currPixel.getBlue()%10;
+
+			  if (rv==gv && gv==bv) {
+				  messagePixels[row][col].setColor(Color.BLACK);
+			  }
 		  }
 	  }
-	  System.out.println(count);
+	  //System.out.println(count);
+	  return messagePicture;
+  }
+  
+  public void encodeImg(Picture messagePict)
+  {
+	  
+	  messagePict.keepOnlyRed();
+	  
+	  Pixel[][] messagePixels = messagePict.getPixels2D();
+	  Pixel[][] currPixels = this.getPixels2D();
+	  Pixel currPixel = null;
+	  Pixel messagePixel = null;
+	  
+	  /*
+	  
+	  int rv;
+	  int gv;
+	  int bv;
+	  
+	  //int count = 0;
+	  
+	  for (int row = 0; row < this.getHeight(); row++) {
+		  for (int col = 0; col < this.getWidth(); col++) {
+			  currPixel = currPixels[row][col];
+			  
+			  rv = currPixel.getRed()%10;
+			  gv = currPixel.getGreen()%10;
+			  bv = currPixel.getBlue()%10;
+			  
+			  int avg = (rv+gv+bv)/3;
+
+			  if (!(rv==gv && gv == bv)) {
+				  currPixel.setRed((currPixel.getRed()-rv+avg));
+				  currPixel.setGreen((currPixel.getGreen()-gv+avg));
+				  currPixel.setBlue((currPixel.getBlue()-bv+avg));
+			  }
+		  }
+	  }
+	  */
+	  for (int row = 0; row < this.getHeight(); row++) {
+		  for (int col = 0; col < this.getWidth(); col++) {
+			  currPixel = currPixels[row][col];
+			  messagePixel = messagePixels[row][col];
+			  
+			  int v1 = messagePixel.getRed()/100;
+			  int v2 = (messagePixel.getRed()/10)%10;
+			  int v3 = messagePixel.getRed()%10;
+
+			  
+			  currPixel.setRed(currPixel.getRed()-currPixel.getRed()%10+v1);
+			  currPixel.setGreen(currPixel.getGreen()-currPixel.getGreen()%10+v2);
+			  currPixel.setBlue(currPixel.getBlue()-currPixel.getBlue()%10+v3);
+			  }
+		  }
+	  }
+	  //System.out.println(count);
+  /**
+  * Method to decode a message hidden in the
+  * red value of the current picture
+  * @return the picture with the hidden message
+  */
+  public Picture decodeImg()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  int height = this.getHeight();
+	  int width = this.getWidth();
+	  Pixel currPixel = null;
+
+	  Pixel messagePixel = null;
+	  Picture messagePicture = new Picture(height,width);
+	  Pixel[][] messagePixels = messagePicture.getPixels2D();
+	  //int count = 0;
+	  
+	  for (int row = 0; row < this.getHeight(); row++) {
+		  for (int col = 0; col < this.getWidth(); col++) {
+			  currPixel = pixels[row][col];
+			  messagePixel = messagePixels[row][col];
+			  
+			  int rv = currPixel.getRed()%10;
+			  int gv = currPixel.getGreen()%10;
+			  int bv = currPixel.getBlue()%10;
+
+			  messagePixel.setRed(rv*100 + gv*10 + bv);
+			  messagePixel.setBlue(0);
+			  messagePixel.setGreen(0);
+		  }
+	  }
+	  //System.out.println(count);
 	  return messagePicture;
   }
   
