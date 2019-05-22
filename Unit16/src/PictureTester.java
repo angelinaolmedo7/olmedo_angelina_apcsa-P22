@@ -67,7 +67,7 @@ public class PictureTester
   {
     Picture enc = new Picture("beach.jpg");
     enc.explore();
-    enc.encode(new Picture("msg.jpg"));
+    enc.encode(new Picture("apple_icon.jpg"));
     enc.explore();
     enc.decode().explore();
   }
@@ -76,7 +76,7 @@ public class PictureTester
   {
     Picture enc = new Picture("beach.jpg");
     enc.explore();
-    enc.encodeImg(new Picture("femaleLionAndHall.jpg"));
+    enc.encodeImg(new Picture("apple_icon.jpg"));
     enc.explore();
     enc.decodeImg().explore();
   }
@@ -111,6 +111,6 @@ public class PictureTester
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
 	  
-	  testEncodeDecodeImg();
+	  testEncodeDecode();
   }
 }

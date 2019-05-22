@@ -581,19 +581,47 @@ public class Picture extends SimplePicture
 		  }
 	  }
 	  */
-	  for (int row = 0; row < this.getHeight(); row++) {
-		  for (int col = 0; col < this.getWidth(); col++) {
+	  for (int row = 0; row < messagePict.getHeight() && row < this.getHeight(); row++) {
+		  for (int col = 0; col < messagePict.getWidth() && col < this.getWidth(); col++) {
 			  currPixel = currPixels[row][col];
 			  messagePixel = messagePixels[row][col];
 			  
 			  int v1 = messagePixel.getRed()/100;
 			  int v2 = (messagePixel.getRed()/10)%10;
 			  int v3 = messagePixel.getRed()%10;
+			  
+			  int c1 = currPixel.getRed();
+			  int c2 = currPixel.getGreen();
+			  int c3 = currPixel.getBlue();
+			  
 
 			  
 			  currPixel.setRed(currPixel.getRed()-currPixel.getRed()%10+v1);
 			  currPixel.setGreen(currPixel.getGreen()-currPixel.getGreen()%10+v2);
 			  currPixel.setBlue(currPixel.getBlue()-currPixel.getBlue()%10+v3);
+			  
+			  
+			  if (Math.abs(currPixel.getRed()-c1) > Math.abs(currPixel.getRed()+10-c1)) {
+				  currPixel.setRed(currPixel.getRed()+10);
+			  }
+			  else if (Math.abs(currPixel.getRed()-c1) > Math.abs(currPixel.getRed()-10-c1)) {
+				  currPixel.setRed(currPixel.getRed()-10);
+			  }
+			  
+			  if (Math.abs(currPixel.getGreen()-c2) > Math.abs(currPixel.getGreen()+10-c2)) {
+				  currPixel.setGreen(currPixel.getGreen()+10);
+			  }
+			  else if (Math.abs(currPixel.getGreen()-c2) > Math.abs(currPixel.getGreen()-10-c2)) {
+				  currPixel.setGreen(currPixel.getGreen()-10);
+			  }
+			  
+			  if (Math.abs(currPixel.getBlue()-c3) > Math.abs(currPixel.getBlue()+10-c3)) {
+				  currPixel.setBlue(currPixel.getBlue()+10);
+			  }
+			  else if (Math.abs(currPixel.getBlue()-c3) > Math.abs(currPixel.getBlue()-10-c3)) {
+				  currPixel.setBlue(currPixel.getBlue()-10);
+			  }
+			  
 			  }
 		  }
 	  }
@@ -638,6 +666,7 @@ public class Picture extends SimplePicture
    */
   public static void main(String[] args) 
   {
+	 /*
     Picture beach = new Picture("beach.jpg");
     beach.explore();
     beach.zeroBlue();
@@ -656,6 +685,7 @@ public class Picture extends SimplePicture
     Picture collage = new Picture("640x480.jpg");
     collage.createMyCollage();
     collage.explore();
+    */
     
   }
   
